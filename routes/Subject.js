@@ -19,6 +19,8 @@ res.json(rows);
 }
 catch (e) 
 {
+console.error("Error in Save_Subject route:", e);
+res.status(500).json({ error: e.message });
 }
 finally 
 {
@@ -43,6 +45,8 @@ res.json(rows);
 }
 catch (e) 
 {
+console.error("Error in Accept_Subject route:", e);
+res.status(500).json({ error: e.message });
 }
 finally 
 {
@@ -66,6 +70,8 @@ res.json(rows);
 }
 catch (e) 
 {
+console.error("Error in Search_Subject route:", e);
+res.status(500).json({ error: e.message });
 }
 finally 
 {
@@ -90,6 +96,8 @@ res.json(rows);
 }
 catch (e) 
 {
+console.error("Error in Search_Pending_Subject route:", e);
+res.status(500).json({ error: e.message });
 }
 finally 
 {
@@ -113,6 +121,8 @@ res.json(rows);
 }
 catch (e) 
 {
+console.error("Error in Get_Subject route:", e);
+res.status(500).json({ error: e.message });
 }
 finally 
 {
@@ -136,10 +146,13 @@ res.json(rows);
 }
 catch (e) 
 {
+console.error("Error in Delete_Subject route:", e);
+res.status(500).json({ error: e.message });
 }
 finally 
 {
 }
 });
 module.exports = router;
+
 

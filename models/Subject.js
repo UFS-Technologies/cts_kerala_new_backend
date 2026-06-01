@@ -10,11 +10,11 @@ var Subject = {
         "@User_Id_ :=?," +
         "@Request_Status :=?)",
       [
-        Subject_.Subject_Id,
+        isNaN(Number(Subject_.Subject_Id)) ? 0 : Number(Subject_.Subject_Id),
         Subject_.Subject_Name,
-        Subject_.Exam_status,
-        Subject_.User_Id,
-        Subject_.Request_Status,
+        isNaN(Number(Subject_.Exam_status)) ? 0 : Number(Subject_.Exam_status),
+        isNaN(Number(Subject_.User_Id)) || Subject_.User_Id === null ? null : Number(Subject_.User_Id),
+        isNaN(Number(Subject_.Request_Status)) ? 0 : Number(Subject_.Request_Status),
       ],
       callback
     );
@@ -26,21 +26,27 @@ var Subject = {
     
     return db.query(
       "CALL Accept_Subject(" + "@Subject_Id_ :=?," + "@Request_Status :=?)",
-      [Subject_.Subject_Id, Subject_.Request_Status],
+      [
+        isNaN(Number(Subject_.Subject_Id)) ? 0 : Number(Subject_.Subject_Id),
+        isNaN(Number(Subject_.Request_Status)) ? 0 : Number(Subject_.Request_Status)
+      ],
       callback
     );
   },
   Delete_Subject: function (Subject_Id_, Request_Status_, callback) {
     return db.query(
       "CALL Delete_Subject(@Subject_Id_ :=?, @Request_Status_ :=?)",
-      [Subject_Id_, Request_Status_],
+      [
+        isNaN(Number(Subject_Id_)) ? 0 : Number(Subject_Id_),
+        isNaN(Number(Request_Status_)) ? 0 : Number(Request_Status_)
+      ],
       callback
     );
   },
   Get_Subject: function (Subject_Id_, callback) {
     return db.query(
       "CALL Get_Subject(@Subject_Id_ :=?)",
-      [Subject_Id_],
+      [isNaN(Number(Subject_Id_)) ? 0 : Number(Subject_Id_)],
       callback
     );
   },
@@ -65,3 +71,4 @@ var Subject = {
   },
 };
 module.exports = Subject;
+
